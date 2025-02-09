@@ -4,9 +4,10 @@ import express from 'express'
 import cors from 'cors'
 import mongoose from 'mongoose'
 import connectDB from './configs/mongodb.js';
+import userRouter from './routes/userRoutes.js';
 
 // App configuration
-const PORT = process.env.PORT || 4000
+const PORT = process.env.PORT || 5000
 const app = express()
 
 // Function to start the server
@@ -23,7 +24,7 @@ const startServer = async () => {
     app.get('/', (req, res) => {
       res.send("Hello World");
     });
-
+     app.use('/api/user', userRouter);
     // Start server
     app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
   } catch (error) {
